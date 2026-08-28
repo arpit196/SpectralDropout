@@ -30,3 +30,42 @@ SpectralDropout/
 ├── evaluate.py            # Model evaluation script
 ├── requirements.txt       # Dependencies
 └── README.md              # Project documentation
+```
+
+1. To Clone the repository run:
+
+git clone [https://github.com/your-username/SpectralDropout.git](https://github.com/your-username/SpectralDropout.git)
+cd SpectralDropout
+
+2. View and install Dependences:
+
+pip install -r requirements.txt
+
+3. Training
+Run train.py to train the Spectral Dropout model. Training metrics, logs, and loss/accuracy plots are automatically saved to ./logs/, and model weights are saved to ./weights/.
+Some different ways to run training are shown below:
+
+```bash
+# Run training with default settings (CIFAR-10, 200 epochs, batch size 100)
+python train.py
+
+# Run training on CIFAR-100 with custom hyperparameters
+python train.py \
+    --model_name spectral_vgg16_cifar100 \
+    --cifar100 \
+    --epochs 150 \
+    --batch_size 128 \
+    --init_lr 0.05 \
+    --dropout_rate 0.25 \
+    --patience 20
+
+# Run a fast test run (10 epochs)
+python train.py \
+    --model_name test_run \
+    --epochs 10 \
+    --batch_size 64
+```
+
+
+
+
