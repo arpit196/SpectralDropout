@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software or paper, please cite it as below."
+authors:
+  - family-names: "Rai"
+    given-names: "Arpit"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Rai"
+    given-names: "Arpit"
+title: "Polar Spectral Dropout: Frequency-Domain Regularization for Domain-Invariant Classification"
+version: 1.0.0
+doi: 10.5281/zenodo.1234567
+date-released: 2026-08-28
+url: "https://github.com/arpit196/SpectralDropout"
