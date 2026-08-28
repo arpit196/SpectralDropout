@@ -71,25 +71,22 @@ python train.py \
 
 4. Evaluation.
 
-The main evaluation metrics are top-1 accuracy on the clean dataset, mCE and CE for individual corruptions. To evaluate models using different methods run: 
-
+The main evaluation metrics are top-1 accuracy on the clean dataset, CE (Corruption Error) for individual corruptions, as well as the mean Corruption Error (mCE) across corruptions. To evaluate a model, put its .weights.h5 file in the --weights_path argument and set the rate and power parameters for Polar Spectral Dropout. Setting the --eval_corruptions flag will report the mean corruption error (mCE) under different image corruptions (shot noise, Gaussian blur, etc) specified in the ImageNet-C along with the raw accuracy. For instance, to evaluate the accuracy and mCE of a VGG-16 model with Polar Spectral Regularization on CIFAR-100, run the following: 
 ```bash
 # Run basic evaluation on standard test set
 python evaluate.py --model_name spectral_vgg16_cifar10
 
-# Run evaluation on CIFAR-100 test set
+# Benchmark model robustness across all 15 image corruptions and severity levels with specific levels of power and rate
 python evaluate.py \
-    --model_name spectral_vgg16_cifar100 \
-    --cifar100
-
-# Benchmark model robustness across all 15 image corruptions and severity levels
-python evaluate.py \
-    --model_name spectral_vgg16_cifar10 \
-    --eval_corruptions \
-    --batch_size 100 \
-    --weights_dir ./weights \
-    --results_dir ./results
+    --weights_path ../cifar100_spectralL.weights.h5   
+    --rate 0.2   
+    --power 1.6   
+    --mag_noise 0.1   
+    --eval_corruptions -
+    -use_cifar100
 ```
+
+Setting --eval_corruptions flags also reports the mCE of the model across the 15 corruptions along with raw clean accuracy. We observed that the models trained with Polar Spectral Dropout showed lower mCE than those trained with standard dropout, which means they had greater robustness.  
 
 
 
