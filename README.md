@@ -41,7 +41,10 @@ cd SpectralDropout
 
 pip install -r requirements.txt
 
+Requires tensorflow >= 2.15, keras for training and opencv, pillow, scipy, skimage, scipy, wandb for generating image corruptions.
+
 3. Training
+
 Run train.py to train the Spectral Dropout model. Training metrics, logs, and loss/accuracy plots are automatically saved to ./logs/, and model weights are saved to ./weights/.
 Some different ways to run training are shown below:
 
@@ -66,6 +69,27 @@ python train.py \
     --batch_size 64
 ```
 
+4. Evaluation.
+
+The main evaluation metrics are top-1 accuracy on the clean dataset, mCE and CE for individual corruptions. To evaluate models using different methods run: 
+
+```bash
+# Run basic evaluation on standard test set
+python evaluate.py --model_name spectral_vgg16_cifar10
+
+# Run evaluation on CIFAR-100 test set
+python evaluate.py \
+    --model_name spectral_vgg16_cifar100 \
+    --cifar100
+
+# Benchmark model robustness across all 15 image corruptions and severity levels
+python evaluate.py \
+    --model_name spectral_vgg16_cifar10 \
+    --eval_corruptions \
+    --batch_size 100 \
+    --weights_dir ./weights \
+    --results_dir ./results
+```
 
 
 
