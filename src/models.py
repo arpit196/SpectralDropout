@@ -18,7 +18,7 @@ from keras import layers
 def bn(name='1'):
     return layers.BatchNormalization(name='bn'+str(name))
 
-def VGG16_with_leaky_relu_and_spectral_dropout(input_shape=(32, 32, 3), classes=10,rate=0.35):
+def VGG16_with_leaky_relu_and_spectral_dropout(input_shape=(32, 32, 3), classes=10,rate=0.35,power=1.3,mag_noise=0.05):
     """
     VGG16 architecture with Leaky ReLU activation and Spectral Dropout.
 
